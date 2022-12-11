@@ -1,0 +1,34 @@
+const express = require('express')
+router = express()
+const verifyToken = require('../verifyToken')
+
+const Scribble = require('../models/Scribble')
+
+router.get('/', verifyToken, async (req,res) => {
+    try {
+        const scribbles = await Scribble.find()
+        res.send(scribbles)
+    } catch(err) {
+        res.send(err)
+    }
+})
+
+router.get('/:scribbleId', verifyToken, async (req,res) => {
+    try {
+        const scribble = await Scribble.findById(req.params.scribbleId)
+        res.send(scribble)
+    } catch(err) {
+        res.send(err)
+    }
+})
+
+router.get('/:userId', verifyToken, async (req,res) => {
+    try {
+        const scribble = await Scribble.findById(req.params.scribbleId)
+        res.send(scribble)
+    } catch(err) {
+        res.send(err)
+    }
+})
+
+module.exports = router
