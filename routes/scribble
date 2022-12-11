@@ -1,13 +1,39 @@
 const express = require('express')
 router = express()
 const verifyToken = require('../verifyToken')
+const {scribbleValidation,commentValidation} = require('../validations/validations')
 
 const Scribble = require('../models/Scribble')
+const Comment = require('../models/Comment')
 
 router.get('/', verifyToken, async (req,res) => {
     try {
+        sortParams = {total_likes : 'desc', created_at : 'desc'}
         const scribbles = await Scribble.find()
-        res.send(scribbles)
+                      .sort(sortParams)
+                      .populate([{
+                        path: 'owner',
+                        model: 'users',
+                        select: 'first_name last_name'
+                       },
+                       {
+                        path: 'comments',
+                        model: 'comments',
+                        select: 'comment owner created_at'
+                       },
+                       {
+                        path: 'likes',
+                        model: 'users',
+                        select: 'first_name last_name'
+                       }])
+                      .exec(function (err, scribbles) {
+                        if(err) {
+                            res.send(err)
+                        }
+                        if(scribbles) {
+                            res.send(scribbles)
+                        }
+                    });
     } catch(err) {
         res.send(err)
     }
@@ -22,13 +48,149 @@ router.get('/:scribbleId', verifyToken, async (req,res) => {
     }
 })
 
-router.get('/:userId', verifyToken, async (req,res) => {
-    try {
-        const scribble = await Scribble.findById(req.params.scribbleId)
-        res.send(scribble)
-    } catch(err) {
-        res.send(err)
+router.post('/', verifyToken, async (req,res) => {
+    const {error} = scribbleValidation(req.body)
+    if(error){
+        return res.status(400).send({message:error['details'][0]['message']})
     }
+
+    const scribble = new Scribble({
+        scribble_title:req.body.title,
+        scribble_description:req.body.description,
+        owner:req.user._id
+    })
+
+    try{
+        const savedScribble = await scribble.save()
+        res.send(savedScribble)
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+})
+
+router.put('/:scribbleId', verifyToken, async (req,res) => {
+    const {error} = scribbleValidation(req.body)
+    if(error){
+        return res.status(400).send({message:error['details'][0]['message']})
+    }
+
+    const scribble = await Scribble.findById(req.params.scribbleId)
+    if(!scribble){
+        return res.status(400).send({message:'Scribble does not exist'})
+    }
+
+    if(req.user._id != scribble.owner.toString()){
+        return res.status(401).send({message:'Unauthorised to modify this scribble.'}) 
+    }
+
+    try{
+        const response = await Scribble.updateOne(scribble, {
+            scribble_title: req.body.title,
+            scribble_description: req.body.description
+        })
+        res.send({message:'Updated successfully.'})
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+})
+
+router.delete('/:scribbleId', verifyToken, async (req,res) => {
+    const scribble = await Scribble.findById(req.params.scribbleId)
+    if(!scribble){
+        return res.status(400).send({message:'Scribble does not exist'})
+    }
+
+    if(req.user._id != scribble.owner.toString()){
+        return res.status(401).send({message:'Unauthorised to modify this scribble.'}) 
+    }
+
+    try{
+        const response = await Scribble.deleteOne(scribble)
+        res.send({message:'Deleted successfully.'})
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+})
+
+router.post('/:scribbleId/like', verifyToken, async (req,res) => {
+    const scribble = await Scribble.findById(req.params.scribbleId)
+    if(!scribble){
+        return res.status(400).send({message:'Scribble does not exist'})
+    }
+
+    if(req.user._id == scribble.owner.toString()){
+        return res.status(401).send({message:'You cannot like your own scribble.'}) 
+    }
+
+    if(scribble.likes.includes(req.user._id)) {
+        return res.status(400).send({message:'Post already liked.'})
+    }
+    scribble.likes.push(req.user._id)
+    scribble.total_likes = scribble.likes.length
+    try{
+        const savedScribble = await scribble.save()
+        res.send(savedScribble)
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+})
+
+router.post('/:scribbleId/unlike', verifyToken, async (req,res) => {
+    const scribble = await Scribble.findById(req.params.scribbleId)
+    if(!scribble){
+        return res.status(400).send({message:'Scribble does not exist'})
+    }
+
+    if(req.user._id == scribble.owner.toString()){
+        return res.status(401).send({message:'You cannot like your own scribble.'}) 
+    }
+
+    if(!scribble.likes.includes(req.user._id)) {
+        return res.status(400).send({message:'You have not liked this post.'})
+    }
+
+    scribble.likes.remove(req.user._id)
+    scribble.total_likes = scribble.likes.length
+    try{
+        const savedScribble = await scribble.save()
+        res.send(savedScribble)
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+})
+
+router.post('/:scribbleId/comment', verifyToken, async (req,res) => {
+    const {error} = commentValidation(req.body)
+    if(error){
+        return res.status(400).send({message:error['details'][0]['message']})
+    }
+    const scribble = await Scribble.findById(req.params.scribbleId)
+    if(!scribble){
+        return res.status(400).send({message:'Scribble does not exist'})
+    }
+
+    if(req.user._id == scribble.owner.toString()){
+        return res.status(401).send({message:'You cannot comment on your own scribble.'}) 
+    }
+
+    const comment = new Comment({
+        comment:req.body.comment,
+        owner:req.user._id
+    })
+
+    try{
+        const savedComment = await comment.save()
+        scribble.comments.push(savedComment)
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
+
+    try{
+        const savedScribble = await scribble.save()
+        res.send(savedScribble)
+    }catch(err){
+        res.status(400).send({message:err})
+    } 
 })
 
 module.exports = router

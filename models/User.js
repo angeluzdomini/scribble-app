@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const UserSchema = mongoose.Schema({
-    user_firstname : {
+    first_name : {
         type : String
     },
-    user_lastname : {
+    last_name : {
         type : String
     },
     email : {
@@ -14,7 +14,8 @@ const UserSchema = mongoose.Schema({
         type : String
     },
     created_at : {
-        type : Timestamp
+        type : mongoose.Schema.Types.Date,
+        default: Date.now
     }
 })
 

@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "b220ade5-b094-4903-ab1b-03df38ae5986",
+		"name": "scribble-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register a new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Sarah\",\r\n    \"lastName\" : \"Conner\",\r\n    \"email\" : \"testuser3@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login a user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"testuser3@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a scribble",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Test\",\r\n    \"description\" : \"Test scriblle by test user.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/scribble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all scribbles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3Nzg1ODF9.gNo9Z6RqSNFWHnelZ5Vm_CE4BVGqUSOoQhf8rEMcKDw",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/scribble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a scribble by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"639614a6dfabd9d6040fdcb1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a scribble",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Testing\",\r\n    \"description\" : \"Test scribble by test user again.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/scribble/639610f2701afc6cee696737",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"639610f2701afc6cee696737"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a scribble",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/scribble/63960dea6257f62605d5176a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"63960dea6257f62605d5176a"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like a scribble",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"639614a6dfabd9d6040fdcb1",
+						"like"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unlike a scribble",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"639614a6dfabd9d6040fdcb1",
+						"like"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment on a scribble",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\" : \"Nice one!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/scribble/639610f2701afc6cee696737/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"scribble",
+						"639610f2701afc6cee696737",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MjE3NGU5MGE1NTExNWIyMGUwOWYiLCJpYXQiOjE2NzA3ODMzNTZ9.cFPBxi4v4PugNxGyzTb_9JmHdZuQsfCYDq1_T-UKmD4",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "auth-token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
