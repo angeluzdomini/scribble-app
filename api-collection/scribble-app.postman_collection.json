@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\" : \"Sarah\",\r\n    \"lastName\" : \"Conner\",\r\n    \"email\" : \"testuser3@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
+					"raw": "{\r\n    \"firstName\" : \"John\",\r\n    \"lastName\" : \"Doe\",\r\n    \"email\" : \"testuser@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\" : \"testuser3@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
+					"raw": "{\r\n    \"email\" : \"testuser@testmail.com\",\r\n    \"password\" : \"123qwe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\" : \"Test\",\r\n    \"description\" : \"Test scriblle by test user.\"\r\n}",
+					"raw": "{\r\n    \"title\" : \"Test\",\r\n    \"description\" : \"Test scribble by test user.\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
