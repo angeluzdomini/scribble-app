@@ -135,7 +135,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1",
+					"raw": "http://localhost:3000/scribble/:scribbleId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -143,7 +143,13 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"639614a6dfabd9d6040fdcb1"
+						":scribbleId"
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -170,7 +176,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/scribble/639610f2701afc6cee696737",
+					"raw": "http://localhost:3000/scribble/:scribbleId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -178,13 +184,19 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"639610f2701afc6cee696737"
+						":scribbleId"
 					],
 					"query": [
 						{
 							"key": "auth-token",
 							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
 						}
 					]
 				}
@@ -203,7 +215,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/scribble/63960dea6257f62605d5176a",
+					"raw": "http://localhost:3000/scribble/:scribbleId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -211,13 +223,19 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"63960dea6257f62605d5176a"
+						":scribbleId"
 					],
 					"query": [
 						{
 							"key": "auth-token",
 							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
 						}
 					]
 				}
@@ -236,7 +254,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1/like",
+					"raw": "http://localhost:3000/scribble/:scribbleId/like",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -244,7 +262,7 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"639614a6dfabd9d6040fdcb1",
+						":scribbleId",
 						"like"
 					],
 					"query": [
@@ -252,6 +270,12 @@
 							"key": "auth-token",
 							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
 						}
 					]
 				}
@@ -270,7 +294,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/scribble/639614a6dfabd9d6040fdcb1/like",
+					"raw": "http://localhost:3000/scribble/:scribbleId/unlike",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -278,14 +302,20 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"639614a6dfabd9d6040fdcb1",
-						"like"
+						":scribbleId",
+						"unlike"
 					],
 					"query": [
 						{
 							"key": "auth-token",
 							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
 						}
 					]
 				}
@@ -313,7 +343,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/scribble/639610f2701afc6cee696737/comment",
+					"raw": "http://localhost:3000/scribble/:scribbleId/comment",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -321,7 +351,7 @@
 					"port": "3000",
 					"path": [
 						"scribble",
-						"639610f2701afc6cee696737",
+						":scribbleId",
 						"comment"
 					],
 					"query": [
@@ -329,6 +359,12 @@
 							"key": "auth-token",
 							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2MDAxMGUwOGMyZDU5YjY5NTVlMzEiLCJpYXQiOjE2NzA3NzgyMjJ9.y5ItqS2_yHtKIi0VTxKqXRbXyxp6efoChq_B0fv2NOg",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "scribbleId",
+							"value": ""
 						}
 					]
 				}

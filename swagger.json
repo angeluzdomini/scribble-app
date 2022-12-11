@@ -1,0 +1,486 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "scribble-app",
+    "contact": {}
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "name": "auth-token",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Registeranewuser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegisteranewuserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "summary": "Login a user",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Loginauser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginauserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/scribble": {
+      "post": {
+        "summary": "Create a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Createascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateascribbleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all scribbles",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Getallscribbles",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/scribble/{scribbleId}": {
+      "get": {
+        "summary": "Get a scribble by id",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Getascribblebyid",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Updateascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateascribbleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Deleteascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/scribble/{scribbleId}/like": {
+      "post": {
+        "summary": "Like a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Likeascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/scribble/{scribbleId}/unlike": {
+      "post": {
+        "summary": "Unlike a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Unlikeascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/scribble/{scribbleId}/comment": {
+      "post": {
+        "summary": "Comment on a scribble",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Commentonascribble",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "scribbleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CommentonascribbleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RegisteranewuserRequest": {
+      "title": "Register a new user",
+      "example": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "testuser@testmail.com",
+        "password": "123qwe"
+      },
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password"
+      ]
+    },
+    "LoginauserRequest": {
+      "title": "Login a user",
+      "example": {
+        "email": "testuser@testmail.com",
+        "password": "123qwe"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "CreateascribbleRequest": {
+      "title": "Create a scribble",
+      "example": {
+        "title": "Test",
+        "description": "Test scribble by test user."
+      },
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ]
+    },
+    "UpdateascribbleRequest": {
+      "title": "Update a scribble",
+      "example": {
+        "title": "Testing",
+        "description": "Test scribble by test user again."
+      },
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ]
+    },
+    "CommentonascribbleRequest": {
+      "title": "Comment on a scribble",
+      "example": {
+        "comment": "Nice one!"
+      },
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comment"
+      ]
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
