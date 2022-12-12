@@ -28,14 +28,14 @@ router.get('/', verifyToken, async (req,res) => {
                        }])
                       .exec(function (err, scribbles) {
                         if(err) {
-                            res.send(err)
+                            res.status(400).send({message:err})
                         }
                         if(scribbles) {
                             res.send(scribbles)
                         }
                     });
     } catch(err) {
-        res.send(err)
+        res.status(400).send({message:err})
     }
 })
 
@@ -44,7 +44,7 @@ router.get('/:scribbleId', verifyToken, async (req,res) => {
         const scribble = await Scribble.findById(req.params.scribbleId)
         res.send(scribble)
     } catch(err) {
-        res.send(err)
+        res.status(400).send({message:err})
     }
 })
 
